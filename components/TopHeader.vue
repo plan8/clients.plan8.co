@@ -93,7 +93,7 @@
 
 <script>
 import { mapState } from "vuex";
-import Compress from "@/modules/compress";
+
 
 export default {
   data() {
@@ -117,7 +117,7 @@ export default {
     download() {
       this.isZipping = true;
       console.log(this.project);
-      Compress.generateZipFile(this.project, () => {
+      this.$compress.generateZipFile(this.project, () => {
         this.isZipping = false;
       });
     },

@@ -78,7 +78,9 @@ export default {
 
   plugins: [
     // './plugins/rendertime.server'
-    { src: '~/plugins/masterChannel.js', mode: 'client' }
+    { src: '~/plugins/masterChannel.js', mode: 'client' },
+    { src: '~/plugins/compress.js', mode: 'client' },
+
   ],
   css: [
     '~/assets/scss/main.scss'

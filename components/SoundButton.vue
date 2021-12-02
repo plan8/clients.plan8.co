@@ -157,7 +157,7 @@ export default {
       clearInterval(this.progressTimer);
     },
     async setItem(e) {
-      console.log("target: ", e.target.className);
+      
 
       if (this.useTone) {
         await start();
@@ -189,7 +189,7 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       if (e.type == "click") return;
-      console.log("handle touch");
+      
       this.setItem(e);
     },
     toggleLoop(e) {
@@ -210,7 +210,7 @@ export default {
       this.clearTimer();
 
       this.startTime = getContext().now();
-      console.log("this.startTime: ", this.startTime);
+      
 
       this.tonePlayer.start(now());
       this.$nuxt.$emit("nowplaying", this.itemData);
@@ -274,7 +274,7 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
-    font-family: Mono;
+    // font-family: Mono;
     transition: 0.4s;
 
     .controls {
