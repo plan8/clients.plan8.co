@@ -11,8 +11,6 @@
 <script>
 import { mapState } from "vuex";
 
-
-
 export default {
   head() {
     return {
@@ -28,30 +26,30 @@ export default {
   },
   computed: {
     ...mapState({
-      theme: state => state.project.settings.theme
+      theme: (state) => state.project.settings.theme,
     }),
 
-  
-
-    currentTheme(){
+    currentTheme() {
       switch (this.theme) {
         case 0:
-          return ''
+          return "";
           break;
-          case 1:
-          return 'theme-blue'
+        case 1:
+          return "theme-blue";
           break;
-      
+
         default:
           break;
       }
-    }
+    },
+  },
+  mounted(){
+    document.addEventListener("keydown", this.$helpers.keyHandler);
   }
 };
 </script>
 
 <style lang="scss">
-
 .page {
   margin-bottom: 5rem;
 }

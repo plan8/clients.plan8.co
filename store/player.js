@@ -35,12 +35,13 @@ export const mutations = {
             return;
         } else {
             state.item = listItems[currentIndex - 1];
-            this.state.items.currentStem = state.item.stems[0]
+            state.currentStem.currentStem = state.item.stems[0]
         }
     },
 
     SET_NEXT(state, payload) {
         let listItems = state.itemsCue
+        console.log('listItems: ', listItems);
         let currentIndex;
         if (listItems.indexOf(state.item) !== -1) {
             currentIndex = listItems.indexOf(state.item) + 1
@@ -48,7 +49,7 @@ export const mutations = {
             currentIndex = 0
         }
         state.item = listItems[(currentIndex % listItems.length)];
-        this.state.items.currentStem = state.item.stems[0]
+        state.currentStem = state.item.stems[0]
     },
 
     SET_ITEM(state, payload) {
