@@ -10,7 +10,7 @@ export default {
 
     const promises = []
 
-    const previewRoot = 'https://plan8-api-preview-dev.s3.eu-central-1.amazonaws.com'
+    const previewRoot = 'https://plan8-api-preview.s3.eu-central-1.amazonaws.com/'
 
     project.subProjects.forEach(project => {
       jszip.folder(project.name);
