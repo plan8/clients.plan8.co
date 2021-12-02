@@ -6,7 +6,7 @@
   targetPort = 3000
 
 [build]
-  command = "rm -r node_modules/.cache/pwa/icon && npm run generate"
+  command = "npm run generate"
   publish = "dist"
   functions = ".output/server"
 
