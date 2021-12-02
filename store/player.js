@@ -41,7 +41,7 @@ export const mutations = {
 
     SET_NEXT(state, payload) {
         let listItems = state.itemsCue
-        console.log('listItems: ', listItems);
+        
         let currentIndex;
         if (listItems.indexOf(state.item) !== -1) {
             currentIndex = listItems.indexOf(state.item) + 1
@@ -53,7 +53,7 @@ export const mutations = {
     },
 
     SET_ITEM(state, payload) {
-        console.log('payload: ', payload);
+        
         state.item = payload;
         state.currentStem = payload.stems[0]
       

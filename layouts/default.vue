@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div v-show="!isLoading" class="">
     <main>
       <nuxt class="page" />
     </main>
@@ -27,6 +27,7 @@ export default {
   computed: {
     ...mapState({
       theme: (state) => state.project.settings.theme,
+      isLoading: (state) => state.isLoading,
     }),
 
     currentTheme() {

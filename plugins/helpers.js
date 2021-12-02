@@ -1,12 +1,12 @@
 
 
 export default function (context, inject, store) {
-    console.log('context: ', context);
+    
 
     const helpers = {
 
         keyHandler(e) {
-            console.log('e: ', e);
+            
             if (e.keyCode == 27) {
                 // ESC KEY
                 store.commit("items/SET_SELECTEDITEMS", []);
@@ -32,7 +32,7 @@ export default function (context, inject, store) {
                         });
 
                     });
-                    console.log('items: ', items);
+                    
                     context.store.commit("player/SET_ITEMSCUE", items);
 
                     switch (e.keyCode) {

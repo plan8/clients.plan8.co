@@ -42,13 +42,13 @@ export default {
     this.simplePlayer.preload = true;
     //this.simplePlayer.autoplay = true;2
 
-    console.log('this.currentStem.key: ', this.currentStem.key);
+    
 
     this.addListeners();
   },
   watch: {
     // currentSource(e) {
-    //   console.log('e: ', e);
+    //   
       
     //   this.simplePlayer.src = e
     // },
@@ -208,7 +208,7 @@ export default {
       }
     },
     toggle() {
-      console.log('toggle: ', this.isPlaying);
+      
       if (this.isPlaying) {
         this.stop();
       } else {

@@ -4,7 +4,7 @@ import saveAs from "file-saver";
 
 
 export default function (ctx, inject, store) {
-    console.log('ctx: ', ctx);
+    
 
     const compress = {
         generateZipFile(project, onComplete) {
