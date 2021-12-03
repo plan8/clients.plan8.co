@@ -154,41 +154,41 @@ export default {
     display: flex;
 
     .icon {
-      padding-right: 1rem;
-      padding-top: 1rem;
+      padding-right: 0.8rem;
+      padding-top: 1.5rem;
       cursor: pointer;
 
       svg {
-        width: 40px;
+        width: 50px;
 
         &#download {
           circle {
-            stroke: var(--primaryColor);
+            stroke: var(--primaryColorDarker);
           }
 
           path {
-            stroke: var(--primaryColor);
-            fill: var(--primaryColor);
+            stroke: var(--primaryColorDarker);
+            fill: var(--primaryColorDarker);
           }
         }
 
         &#settings {
           circle {
-            stroke: var(--primaryColor);
+            stroke: var(--primaryColorDarker);
 
             &#knob {
               stroke: none;
-              fill: var(--primaryColor);
+              fill: var(--primaryColorDarker);
             }
           }
 
           line {
-            stroke: var(--primaryColor);
+            stroke: var(--primaryColorDarker);
           }
 
           path {
-            stroke: var(--primaryColor);
-            fill: var(--primaryColor);
+            stroke: var(--primaryColorDarker);
+            fill: var(--primaryColorDarker);
           }
         }
       }

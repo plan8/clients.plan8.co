@@ -9,7 +9,7 @@
   --primaryColor: hsl(163, 100%, 36%);
   --primaryColorDarker: hsl(163, 100%, 26%);
   --primaryContrast: #fff;
-  --fontFamily: Harmonia, sans-serif;
+  --fontFamily: DIN, sans-serif;
   --borderSize: 3px;
   --borderRadius: 5px;
 }
@@ -25,6 +25,7 @@ body {
 html,
 body {
   background-color: var(--bgColor);
+  font-size: 18px;
 
   &.theme-blue {
     --bgColor: #e1e1df;
@@ -77,10 +78,16 @@ body {
 
 .title {
   margin-bottom: 2rem;
+  font-family: Harmonia;
+  font-weight: bold;
+  color: var(--primaryColorDarker);
 }
 
 .subtitle {
+  font-family: Harmonia;
+  // font-weight: bold;
   margin-top: -1rem;
+  color: var(--primaryColorDarker);
 }
 
 .field {
@@ -103,7 +110,7 @@ body {
 }
 
 .is-size-3 {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .is-size-4 {

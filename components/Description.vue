@@ -1,6 +1,6 @@
 <template>
   <div class="description" v-if="description && description.length">
-      <p class="subtitle">{{description}}</p>
+      <p class="">{{description}}</p>
   </div>
 </template>
 
@@ -33,6 +33,11 @@ export default {
 @import "@/assets/scss/mixins.scss";
 
 .description {
-    margin-bottom: 1rem;
+    
+    margin-bottom: 2rem;
+    p {
+        margin-top: 2rem;
+        font-weight: normal !important;
+    }
 }
 </style>

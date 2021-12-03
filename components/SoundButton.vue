@@ -20,6 +20,7 @@
         <svg
           v-else
           class="onlycontrol"
+          id="stop"
           width="18"
           height="18"
           viewBox="0 0 18 18"
@@ -266,6 +267,10 @@ export default {
   }
 
   @include breakpoint(md) {
+    width: calc((100% / 3) - 0.5rem);
+  }
+
+   @include breakpoint(lg) {
     width: calc((100% / 4) - 0.5rem);
   }
 
@@ -274,21 +279,26 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
-    // font-family: Mono;
+    font-family: DIN;
     transition: 0.4s;
 
     .controls {
       z-index: 3;
       position: relative;
-      width: 80px;
+      width: 70px;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: -5px;
 
       svg {
         width: auto;
         height: 20px;
+
+        &#stop {
+          height: 18px;
+        }
       }
     }
 
@@ -303,13 +313,14 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        //padding-bottom: 1px;
 
         @include breakpoint(sm) {
           max-width: 280px;
         }
 
         @include breakpoint(md) {
-          max-width: 140px;
+          max-width: 150px;
         }
       }
     }

@@ -3,8 +3,9 @@
     <TopHeader/>
     <section class="section">
       <div class="container">
-        <div v-for="sp in project.subProjects" :key="sp.id">
+        <div v-for="sp in project.subProjects" :key="sp.id" class="subproject">
           <p class="title is-size-4">{{ sp.name }}</p>
+          <Description :description="sp.description" />
           <div class="button-container">
             <SoundButton
               v-for="item in sp.items"
@@ -89,3 +90,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.subproject {
+
+  margin-bottom: 3rem;
+}
+</style>

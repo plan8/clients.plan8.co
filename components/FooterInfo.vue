@@ -36,6 +36,7 @@ export default {
 @import "@/assets/scss/mixins.scss";
 
 .info-footer {
+  font-size: 0.8rem;
   color: var(--primaryColor);
 }
 </style>
