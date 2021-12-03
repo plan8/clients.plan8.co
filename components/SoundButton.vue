@@ -31,7 +31,7 @@
       </div>
       <div class="right" @mousedown="handleMouse" @touchstart="handleTouch">
         <div v-if="isLoaded" class="item-info">
-          {{ itemData.originalName }}
+          {{ itemData.originalName | noExtension }}
         </div>
         <div v-else>
           <div class="item-info">Loading</div>

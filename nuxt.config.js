@@ -81,6 +81,7 @@ export default {
     { src: '~/plugins/masterChannel.js', mode: 'client' },
     { src: '~/plugins/compress.js', mode: 'client' },
     { src: '~/plugins/helpers.js', mode: 'client' },
+    { src: '~/plugins/filters.js', mode: 'client' },
 
   ],
   css: [
