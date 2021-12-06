@@ -73,7 +73,7 @@ export default {
   },
 
   buildModules: [
-    '@nuxt/bridge'
+    '@nuxt/bridge',
     '@nuxtjs/pwa'
   ],
 
