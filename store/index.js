@@ -102,6 +102,8 @@ export const processProjectData = (data) => {
         })
     }
 
+    data.settings = {...defaultProject.settings, ...data.settings}
+
     return data;
 };
 

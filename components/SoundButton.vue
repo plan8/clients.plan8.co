@@ -180,15 +180,15 @@ export default {
       }
     },
     handleMouse(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      // e.preventDefault();
+      // e.stopPropagation();
       if (e.type != "mousedown") return;
 
       this.setItem(e);
     },
     handleTouch(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      // e.preventDefault();
+      // e.stopPropagation();
       if (e.type == "click") return;
       
       this.setItem(e);
