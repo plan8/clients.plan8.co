@@ -41,6 +41,9 @@ export default {
          case 2:
           return "theme-green";
           break;
+         case 3:
+          return "theme-gradient";
+          break;
 
 
         default:

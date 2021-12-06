@@ -158,7 +158,7 @@ export default {
     }),
 
     dynamicLogo() {
-      return this.project.settings.theme > 0;
+      return this.project.settings.theme == 1 || this.project.settings.theme == 2;
     },
     soloMode: {
       get() {
@@ -268,7 +268,7 @@ export default {
   .logo {
     svg {
       path {
-        fill: var(--primaryColor);
+        fill: var(--textColor);
       }
       rect {
         fill: var(--primaryColorDarker);

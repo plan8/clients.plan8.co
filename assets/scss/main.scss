@@ -24,8 +24,9 @@ body {
 
 html,
 body {
-  background-color: var(--bgColor);
+  background: var(--bgColor);
   font-size: 18px;
+  color: var(--textColor);
 
   &.theme-blue {
     --bgColor: #e1e1df;
@@ -40,12 +41,23 @@ body {
 
   &.theme-green {
     --bgColor: #e4e4cf;
-    --textColor: #333;
+    --textColor: hsl(163, 100%, 36%);
     --primaryColor: hsl(163, 100%, 36%);
     --primaryColorDarker: hsl(163, 100%, 26%);
     --primaryContrast: #fff;
     --fontFamily: DIN, sans-serif;
   }
+
+  &.theme-gradient {
+    --bgColor: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(122,86,198,1) 100%);
+    --textColor: #FFF;
+    --primaryColor: #423761;
+    --primaryColorDarker: #615288;
+    --primaryContrast: #fff;
+    --fontFamily: DIN, sans-serif;
+  }
+
+  
 }
 
 .btn {
@@ -103,7 +115,7 @@ body {
   margin-bottom: 2rem;
   font-family: Harmonia;
   font-weight: bold;
-  color: var(--primaryColor);
+  color: var(--textColor);
 }
 
 .subtitle {
@@ -111,7 +123,7 @@ body {
   // font-weight: bold;
   margin-top: -1rem;
   font-weight: bold;
-  color: var(--primaryColorDarker);
+  color: var(--textColor);
 }
 
 .field {

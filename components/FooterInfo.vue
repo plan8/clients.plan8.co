@@ -37,6 +37,6 @@ export default {
 
 .info-footer {
   font-size: 0.8rem;
-  color: var(--primaryColor);
+  color: var(--textColor);
 }
 </style>
