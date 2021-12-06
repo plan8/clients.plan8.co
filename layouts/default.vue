@@ -14,10 +14,6 @@ import { mapState } from "vuex";
 export default {
   head() {
     return {
-      title: "Nuxt nitro Demo",
-      meta: [
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-      ],
 
       htmlAttrs: {
         class: this.currentTheme,
@@ -26,7 +22,7 @@ export default {
   },
   computed: {
     ...mapState({
-      theme: (state) => state.project.settings.theme,
+      theme: (state) => state.project.settings.theme || 0,
       isLoading: (state) => state.isLoading,
     }),
 

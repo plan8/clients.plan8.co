@@ -48,7 +48,7 @@ export default {
     console.log(this.project);
     setTimeout(() => {
       this.$store.commit("SET_ISLOADING", false);
-    }, 200);
+    }, 50);
   },
 
   async asyncData({ route, store, app }) {
