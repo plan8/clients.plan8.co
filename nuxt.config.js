@@ -3,7 +3,7 @@ import { version as nitroVersion } from '@nuxt/nitro/package.json'
 const meta = {
   title: 'Plan8 Clients',
   desc: 'All for the clients of Plan8',
-  image: 'https://clients.plan8.co/social.jpg',
+  image: 'https://clients.plan8.co/social.jpeg',
   url: 'https://clients.plan8.co'
 }
 
