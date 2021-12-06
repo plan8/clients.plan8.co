@@ -43,7 +43,7 @@ export default {
   methods: {
     toggle() {
       this.$emit("input", !this.value);
-      console.log("this.value: ", this.value);
+      
     },
   },
 };

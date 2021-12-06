@@ -191,7 +191,8 @@ export default {
         this.addListeners();
       }
 
-      if (this.mediaItemKey) {
+        console.log('this.jsonUrl: ', this.jsonUrl);
+      if (this.mediaItemKey && this.mediaItemKey != 0) {
         fetch(this.jsonUrl)
           .then((response) => {
             return response.json();
