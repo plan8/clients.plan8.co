@@ -10,7 +10,8 @@ const defaultProject = {
         allowPublic: false,
         toneOptions: {
             soloMode: false
-        }
+        },
+        useTone: true
     },
     
 };

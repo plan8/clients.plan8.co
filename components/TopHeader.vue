@@ -162,7 +162,7 @@ export default {
     },
     soloMode: {
       get() {
-        return this.project.settings.toneOptions.soloMode || false;
+        return this.project.settings.toneOptions.soloMode;
       },
       set(value) {
         this.$store.commit('SET_SOLOMODE', value)
