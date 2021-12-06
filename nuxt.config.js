@@ -83,6 +83,7 @@ export default {
     { src: '~/plugins/compress.js', mode: 'client' },
     { src: '~/plugins/helpers.js', mode: 'client' },
     { src: '~/plugins/filters.js', mode: 'client' },
+    // { src: '~/plugins/toggle-button.js', mode: 'client' }
 
   ],
   css: [

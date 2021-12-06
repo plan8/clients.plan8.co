@@ -21,7 +21,7 @@ export default {
     }),
     footerText() {
       const year = new Date().getFullYear();
-      return `Copyright Plan8 ${year}`;
+      return `Copyright Plan8 2019 - ${year}`;
     },
   },
 

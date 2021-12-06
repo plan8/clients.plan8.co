@@ -17,11 +17,11 @@
       </div>
     </section>
 
-    <section class="section" v-if="project.settings.toneOptions.showFx">
+    <!-- <section class="section" v-if="project.settings.toneOptions.showFx">
       <div class="container">
         <PlayerMasterController />
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 

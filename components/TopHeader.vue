@@ -3,9 +3,29 @@
     <div class="container top-header">
       <div>
         <p class="is-size-3 title is-bold">{{ project.name }}</p>
-        <p class="subtitle">Created by {{ project.uid.name }}</p>
-
+        <p class="subtitle">
+          Created by {{ project.uid.name }} · {{ infoText }}
+        </p>
         <div class="actions">
+          <button class="btn rounded" @click="download()">
+            Zip and download
+          </button>
+        </div>
+        <div class="project-settings">
+          <Toggle :label="'Solo Trig'"  v-model="soloMode" />
+        </div>
+        
+
+        <!-- 
+        <div class="togglebutton">
+          <div class="button r" id="button-1">
+            <input type="checkbox" class="checkbox" />
+            <div class="knobs"></div>
+            <div class="layer"></div>
+          </div>
+        </div> -->
+        <!-- <div class="actions">
+          
           <div class="icon" v-if="showSettingsButton" @click="toggleSettings()">
             <svg
               id="settings"
@@ -77,11 +97,12 @@
               />
             </svg>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="logo">
         <svg
+          v-if="dynamicLogo"
           width="34"
           height="56"
           viewBox="0 0 34 56"
@@ -102,6 +123,23 @@
             fill="#00B683"
           />
         </svg>
+        <svg
+          v-else
+          width="28"
+          height="45"
+          viewBox="0 0 28 45"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5965 27.1867C6.09849 27.1867 0 21.0887 0 13.5932C0 6.09769 6.09849 0 13.5965 0C21.0945 0 27.1934 6.09699 27.1934 13.5932C27.1934 21.0894 21.0938 27.1867 13.5965 27.1867ZM13.5965 1.88764C7.14043 1.88764 1.88811 7.13868 1.88811 13.5932C1.88811 20.0477 7.14043 25.2987 13.5965 25.2987C20.0526 25.2987 25.3049 20.0477 25.3049 13.5932C25.3049 7.13868 20.0526 1.88764 13.5965 1.88764Z"
+            fill="black"
+          />
+          <path
+            d="M13.5965 45C6.09849 45 0 38.903 0 31.4082C0 23.9134 6.09849 17.8147 13.5965 17.8147C21.0945 17.8147 27.1934 23.9117 27.1934 31.4079C27.1934 38.9041 21.0938 45 13.5965 45ZM13.5965 19.701C7.14043 19.701 1.88811 24.952 1.88811 31.4065C1.88811 37.861 7.14043 43.112 13.5965 43.112C20.0526 43.112 25.3053 37.8638 25.3053 31.4082C25.3053 24.9527 20.0526 19.7023 13.5965 19.7023V19.701Z"
+            fill="black"
+          />
+        </svg>
       </div>
     </div>
   </section>
@@ -118,20 +156,42 @@ export default {
     ...mapState({
       project: (state) => state.project,
     }),
+
+    dynamicLogo() {
+      return this.project.settings.theme > 0;
+    },
+    soloMode: {
+      get() {
+        return this.project.settings.toneOptions.soloMode || false;
+      },
+      set(value) {
+        this.$store.commit('SET_SOLOMODE', value)
+      },
+    },
     showSettingsButton() {
       return this.$route.name == "buttons-id";
     },
+    infoText() {
+      let soundCount = 0;
+      const folderCount = this.project.subProjects.length;
+      const totalItems = this.project.subProjects.map((sp) => {
+        sp.items.forEach((item) => {
+          soundCount++;
+        });
+      });
+      const folderWord = folderCount > 1 ? "folders" : "folder";
+      const soudnWord = soundCount > 1 ? "sounds" : "sound";
+      return `${soundCount} ${soudnWord}, ${folderCount} ${folderWord}`;
+    },
   },
 
-  mounted() {
-    
-  },
+  mounted() {},
   watch: {},
   beforeDestroy() {},
   methods: {
     download() {
       this.isZipping = true;
-      
+
       this.$compress.generateZipFile(this.project, () => {
         this.isZipping = false;
       });
@@ -150,7 +210,17 @@ export default {
   display: flex;
   justify-content: space-between;
 
+  .project-settings {
+     margin-top: 2rem;
+
+     @include breakpoint(sm) {
+       margin-top: 4rem;
+
+     }
+  }
+
   .actions {
+    margin-top: 2rem;
     display: flex;
 
     .icon {
@@ -204,6 +274,12 @@ export default {
         fill: var(--primaryColorDarker);
       }
     }
+  }
+}
+
+.vue-js-switch {
+  .v-switch-core {
+    //  background-color: red !important;
   }
 }
 </style>

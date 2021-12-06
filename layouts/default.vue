@@ -38,6 +38,10 @@ export default {
         case 1:
           return "theme-blue";
           break;
+         case 2:
+          return "theme-green";
+          break;
+
 
         default:
           break;

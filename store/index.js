@@ -9,7 +9,7 @@ const defaultProject = {
         permissions: 0,
         allowPublic: false,
         toneOptions: {
-
+            soloMode: false
         }
     },
     
@@ -144,6 +144,11 @@ export const mutations = {
 
     TOGGLE_SETTINGS(state, payload) {
         state.project.settings.toneOptions.showFx = !state.project.settings.toneOptions.showFx;
+    },
+
+    SET_SOLOMODE(state, payload) {
+
+        state.project.settings.toneOptions.soloMode = payload
     },
 };
 
