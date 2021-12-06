@@ -1,4 +1,7 @@
 import { version as nitroVersion } from '@nuxt/nitro/package.json'
+import { defineNuxtConfig } from '@nuxt/bridge'
+
+
 
 const meta = {
   title: 'Plan8 Clients',
@@ -29,7 +32,10 @@ const environments = {
   }
 }
 
-export default {
+export default defineNuxtConfig({
+  alias: {
+    tslib: 'tslib/tslib.es6.js'
+  },
   components: true,
   target: 'static',
   loading: {
@@ -74,7 +80,7 @@ export default {
 
   buildModules: [
     '@nuxt/bridge',
-    // '@nuxtjs/pwa'
+    '@nuxtjs/pwa'
   ],
 
   plugins: [
@@ -146,4 +152,6 @@ export default {
   //     lang: 'en'
   //   }
   // },
-}
+})
+
+
