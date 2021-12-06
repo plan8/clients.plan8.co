@@ -11,7 +11,7 @@
             Zip and download
           </button>
         </div>
-        <div class="project-settings">
+        <div class="project-settings" v-if="showSettingsButton">
           <Toggle :label="'Solo Trig'"  v-model="soloMode" />
         </div>
         
@@ -266,7 +266,19 @@ export default {
   }
 
   .logo {
+    height: 30px;
+    margin-top: 0.5rem;
+
+    @include breakpoint(sm) {
+          height: 50px;
+    margin-top: 1.5rem;
+
+     }
+
+
     svg {
+      height: 100%;
+      width: auto;
       path {
         fill: var(--textColor);
       }
