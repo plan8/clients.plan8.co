@@ -28,6 +28,7 @@ body {
   background: var(--bgColor);
   font-size: 14px;
   color: var(--textColor);
+  height: 100%;
 
   @include breakpoint(sm) {
     font-size: 18px;
