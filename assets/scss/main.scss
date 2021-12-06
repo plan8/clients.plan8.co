@@ -24,9 +24,14 @@ body {
 
 html,
 body {
+  background: #000;
   background: var(--bgColor);
-  font-size: 18px;
+  font-size: 14px;
   color: var(--textColor);
+
+  @include breakpoint(sm) {
+    font-size: 18px;
+  }
 
   &.theme-blue {
     --bgColor: #e1e1df;
@@ -86,7 +91,7 @@ body {
     height: 50px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-size: 18px;
+
     letter-spacing: 3px;
   }
 
@@ -146,11 +151,18 @@ body {
 }
 
 .is-size-3 {
-  font-size: 2.5rem;
+  font-size: 28px;
+
+  @include breakpoint(sm) {
+    font-size: 64px;
+  }
 }
 
 .is-size-4 {
-  font-size: 1.4rem;
+  font-size: 18px;
+  @include breakpoint(sm) {
+    font-size: 32px;
+  }
 }
 
 .is-size-6 {
