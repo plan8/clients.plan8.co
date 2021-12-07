@@ -30,7 +30,7 @@
           <rect width="18" height="18" rx="3" fill="white" />
         </svg>
       </div>
-      <div class="right" @mousedown="handleMouse" @touchstart="handleTouch">
+      <div class="right" @click="handleMouse" >
         <div v-if="isLoaded" class="item-info">
           {{ itemData.originalName | noExtension }}
         </div>
@@ -180,9 +180,9 @@ export default {
       }
     },
     handleMouse(e) {
-      // e.preventDefault();
-      // e.stopPropagation();
-      if (e.type != "mousedown") return;
+      e.preventDefault();
+      e.stopPropagation();
+     // if (e.type != "mousedown") return;
 
       this.setItem(e);
     },
