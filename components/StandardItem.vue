@@ -19,6 +19,7 @@
       </div>
       <div class="actions">
         <svg
+          class="icon-button"
           @click="download"
           width="48"
           height="48"
@@ -67,13 +68,13 @@ export default {
       }
     },
     download() {
-      fetch(
-        `${this.$config.previewURL}${this.item.stems[0].key}.mp3`
-      )
+      fetch(`${this.$config.previewURL}${this.item.stems[0].key}.mp3`)
         .then((res) => res.blob()) // Gets the response and returns it as a blob
         .then((blob) => {
-          saveAs(blob, `${this.item.originalName.replace(/\.[^/.]+$/, "")}.mp3`);
-    
+          saveAs(
+            blob,
+            `${this.item.originalName.replace(/\.[^/.]+$/, "")}.mp3`
+          );
         });
       // saveAs(`${this.$config.previewURL}${this.item.stems[0].key}.mp3`, `${this.item.originalName}.mp3`);
       // console.log('this.item.originalName: ', this.item.originalName);
@@ -165,6 +166,23 @@ export default {
       }
 
       svg {
+        &.icon-button {
+          cursor: pointer;
+        
+
+          &:hover {
+            circle {
+              stroke: var(--primaryColor);
+                transition: all .4s ease;
+            }
+
+            path {
+              stroke: var(--primaryColor);
+              fill: var(--primaryColor);
+              transition: all .4s ease;
+            }
+          }
+        }
         width: 44px;
 
         circle {

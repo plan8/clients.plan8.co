@@ -9,7 +9,9 @@ const defaultProject = {
         permissions: 0,
         allowPublic: false,
         toneOptions: {
-            soloMode: false
+            soloMode: false,
+            showFx: false,
+            individualVolume: false
         },
         useTone: true
     },
@@ -104,6 +106,8 @@ export const processProjectData = (data) => {
     }
 
     data.settings = {...defaultProject.settings, ...data.settings}
+    data.settings.toneOptions = {...defaultProject.settings.toneOptions, ...data.settings.toneOptions}
+    console.log('data.settings: ', data.settings);
 
     return data;
 };
@@ -125,6 +129,7 @@ export const getters = {
 
 export const mutations = {
     SET_PROJECT(state, payload) {
+        console.log('payload: ', payload);
 
         if (!payload) {
             state.project = defaultProject;

@@ -12,6 +12,7 @@
   --fontFamily: DIN, sans-serif;
   --borderSize: 3px;
   --borderRadius: 5px;
+  --bgHeader: transparent;
 }
 
 body {
@@ -55,12 +56,13 @@ body {
   }
 
   &.theme-gradient {
-    --bgColor: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(122,86,198,1) 100%);
+    --bgColor: #000;
     --textColor: #FFF;
     --primaryColor: #423761;
     --primaryColorDarker: #615288;
     --primaryContrast: #fff;
     --fontFamily: DIN, sans-serif;
+    --bgHeader: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(122,86,198,1) 100%);
   }
 
   

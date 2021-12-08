@@ -1,5 +1,5 @@
 <template>
-  <section class="section top">
+  <section class="section top header-wrapper">
     <div class="container top-header">
       <div>
         <p class="is-size-3 title is-bold">{{ project.name }}</p>
@@ -206,9 +206,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/mixins.scss";
 
+.header-wrapper {
+  background: var(--bgHeader);
+}
+
 .top-header {
   display: flex;
   justify-content: space-between;
+  
 
   .project-settings {
      margin-top: 2rem;
