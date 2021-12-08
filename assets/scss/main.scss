@@ -111,7 +111,7 @@ body {
 
   &:hover {
     background-color: var(--primaryColorDarker);
-    color: var(--bgColor);
+    color: var(--primaryContrast);
   }
 
   &.extended {
