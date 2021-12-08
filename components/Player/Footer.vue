@@ -31,7 +31,6 @@
 
 <script>
 import { mapState } from "vuex";
-// import { Player, JCReverb, Tone } from "tone";
 
 const clamp = function (min, number, max) {
   return Math.min(Math.max(number, min), max);

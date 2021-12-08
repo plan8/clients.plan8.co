@@ -85,7 +85,7 @@ export default defineNuxtConfig({
 
   plugins: [
     // './plugins/rendertime.server'
-    { src: '~/plugins/masterChannel.js', mode: 'client' },
+    // { src: '~/plugins/masterChannel.js', mode: 'client' },
     { src: '~/plugins/compress.js', mode: 'client' },
     { src: '~/plugins/helpers.js', mode: 'client' },
     { src: '~/plugins/filters.js', mode: 'client' },

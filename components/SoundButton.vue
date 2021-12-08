@@ -122,7 +122,7 @@ export default {
 
           this.isPlaying = true;
         },
-      }).connect(this.$masterChannel.master);
+      }).toDestination()//.connect(this.$masterChannel.master);
 
       this.$nuxt.$on("stop-all", this.stop);
 
