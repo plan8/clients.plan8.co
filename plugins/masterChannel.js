@@ -8,11 +8,11 @@ class MasterChannel {
 
     
 
-    this.convolver = new Convolver("/audio/warmplate.wav").toDestination();
-    this.convolverChannel = new Channel({ volume: 0 }).connect(
-      this.convolver
-    );
-    this.convolverChannel.receive("convolverMaster");
+    // this.convolver = new Convolver("/audio/warmplate.wav").toDestination();
+    // this.convolverChannel = new Channel({ volume: 0 }).connect(
+    //   this.convolver
+    // );
+    // this.convolverChannel.receive("convolverMaster");
 
     this.pingPong = new PingPongDelay("8n", 0.2).toDestination();
     this.pingPongChannel = new Channel({ volume: -60 }).connect(
@@ -34,7 +34,7 @@ class MasterChannel {
   }
 
   setReverb(val) {
-    this.convolverChannel.volume.rampTo(gainToDb(val), 0.2);
+   // this.convolverChannel.volume.rampTo(gainToDb(val), 0.2);
   }
 
   setDelay(val) {

@@ -41,7 +41,7 @@ export default {
     ...mapState(["isLoading", "project"]),
   },
   mounted() {
-    console.log(this.project);
+    
 
     this.$store.commit("player/SET_SHOWFOOTER", true);
     this.$store.commit("SET_ISLOADING", false);
@@ -50,7 +50,7 @@ export default {
   async asyncData({ route, store, app }) {
     try {
       const { id } = route.params;
-      console.log("id: ", id);
+      
 
       const apiRoot =
         process.env.NODE_ENV == "production"
@@ -66,7 +66,7 @@ export default {
       }
       const projectPath = `${apiRoot}/projects/${projectId}/public`;
       const project = await $fetch(projectPath);
-      console.log('project: ', project);
+      
 
       // const project = store.dispatch('getPublicProject', {
       //   projectId: id
@@ -80,7 +80,7 @@ export default {
       //   project,
       // };
     } catch (error) {
-      console.log("error!: ", error);
+      
 
       return {
         // project: {
