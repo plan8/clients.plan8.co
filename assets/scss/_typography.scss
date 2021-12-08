@@ -12,13 +12,12 @@
     font-style: bold;
 }
 
-
-
 @font-face {
     font-family: "Harmonia";
     src: url("~assets/fonts/HarmoniaSansW01-Regular.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -26,15 +25,15 @@
     src: url("~assets/fonts/HarmoniaSansW01-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
-
 
 @font-face {
     font-family: "DIN";
     src: url("~assets/fonts/DINNextLTPro-Light.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
-   
+    font-display: swap;
 }
 
 @font-face {
@@ -42,6 +41,7 @@
     src: url("~assets/fonts/DINNextLTPro-Light.woff") format("woff");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 // @font-face {
@@ -49,6 +49,7 @@
 //     src: url("~assets/fonts/Harmonia Sans W01 Semibold.woff2") format("woff2");
 //     font-weight: normal;
 //     font-style: normal;
+//font-display: swap;
 // }
 
 // @font-face {
@@ -56,21 +57,24 @@
 //     src: url("~assets/fonts/HarmoniaSansW01-Semibold.woff") format("woff");
 //     font-weight: normal;
 //     font-style: normal;
+//font-display: swap;
 // }
 
-@font-face {
-    font-family: "Mono";
-    src: url("~assets/fonts/Harmonia Sans Mono W01.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: "Mono";
+//     src: url("~assets/fonts/Harmonia Sans Mono W01.woff2") format("woff2");
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+// }
 
-@font-face {
-    font-family: "Mono";
-    src: url("~assets/fonts/HarmoniaSansMonoW01-.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: "Mono";
+//     src: url("~assets/fonts/HarmoniaSansMonoW01-.woff") format("woff");
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+// }
 
 //   @font-face {
 //     font-family: 'DM Sans';
