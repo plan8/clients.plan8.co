@@ -36,7 +36,7 @@ export default {
     
     margin-bottom: 2rem;
     p {
-        margin-top: 2rem;
+       
         font-weight: normal !important;
     }
 }

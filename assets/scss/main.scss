@@ -68,6 +68,9 @@ body {
 
   
 }
+button, h1, .title, .subtitle, .item-info {
+  padding-top: 3px !important;
+}
 
 .btn {
   all: initial;
@@ -121,7 +124,7 @@ body {
 }
 
 .title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.6rem;
   font-family: Harmonia;
   font-weight: bold;
   color: var(--textColor);

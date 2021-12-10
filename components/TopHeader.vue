@@ -4,10 +4,12 @@
       <div>
         <p class="is-size-3 title is-bold">{{ project.name }}</p>
         <p class="subtitle">
-          Created by {{ project.uid.name }} · {{ infoText }}
+          Created by {{ project.uid.name }}
+          <br>
+          {{ infoText }}
         </p>
         <div class="actions">
-          <button class="btn rounded" @click="download()">
+          <button class="btn rounded" id="download" @click="download()">
             Zip and download
           </button>
         </div>
@@ -227,6 +229,15 @@ export default {
   .actions {
     margin-top: 2rem;
     display: flex;
+
+    #download {
+      display: none;
+
+      @include breakpoint(sm) {
+         display: block;
+
+     }
+    }
 
     .icon {
       padding-right: 0.8rem;
