@@ -6,6 +6,7 @@ const defaultProject = {
     uid: {},
     tags: [],
     settings: {
+        showWaveForms: true,
         permissions: 0,
         allowPublic: false,
         toneOptions: {
@@ -155,9 +156,15 @@ export const mutations = {
     },
 
     SET_SOLOMODE(state, payload) {
-
         state.project.settings.toneOptions.soloMode = payload
     },
+
+    SET_SHOWWAVEFORMS(state, payload) {
+        console.log('payload: ', payload);
+        state.project.settings.showWaveForms = payload
+    },
+
+    
 };
 
 export const actions = {

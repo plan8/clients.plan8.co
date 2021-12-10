@@ -13,8 +13,12 @@
             Zip and download
           </button>
         </div>
-        <div class="project-settings" v-if="showSettingsButton">
+        <div class="project-settings" v-if="isButtonView">
           <Toggle :label="'Solo Trig'"  v-model="soloMode" />
+        </div>
+
+         <div class="project-settings is-hidden-mobile" v-if="!isButtonView">
+          <Toggle :label="'Waveforms'"  v-model="showWaveForms" />
         </div>
         
 
@@ -152,7 +156,9 @@ import { mapState } from "vuex";
 
 export default {
   data() {
-    return {};
+    return {
+     
+    };
   },
   computed: {
     ...mapState({
@@ -170,7 +176,15 @@ export default {
         this.$store.commit('SET_SOLOMODE', value)
       },
     },
-    showSettingsButton() {
+    showWaveForms: {
+      get() {
+        return this.project.settings.showWaveForms;
+      },
+      set(value) {
+        this.$store.commit('SET_SHOWWAVEFORMS', value)
+      },
+    },
+    isButtonView() {
       return this.$route.name == "buttons-id";
     },
     infoText() {

@@ -7,7 +7,7 @@
       <div class="info">
         <p>{{ item.originalName | noExtension }}</p>
       </div>
-      <div class="wf">
+      <div class="wf" v-if="project.settings.showWaveForms">
         <PlayerWaveForm
           :mediaItemKey="item.stems[0].key"
           :isFooter="true"
@@ -53,6 +53,7 @@ export default {
   computed: {
     ...mapState({
       playerItem: (state) => state.player.item,
+       project: (state) => state.project,
     }),
     isActiveItem() {
       return this.playerItem.id == this.item.id;
@@ -142,13 +143,14 @@ export default {
         // font-family: monospace;
         font-size: 1rem;
         @include breakpoint(sm) {
-          width: 280px;
+          width: 220px;
         }
       }
     }
 
     .time-info {
       display: none;
+      flex: 1;
 
       @include breakpoint(sm) {
         display: inline-block;
@@ -158,7 +160,7 @@ export default {
     }
 
     .actions {
-      margin-left: auto;
+    
       display: none;
 
       @include breakpoint(sm) {

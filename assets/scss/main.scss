@@ -149,6 +149,13 @@ button, h1, .title, .subtitle, .item-info {
   }
 }
 
+.is-hidden-mobile {
+  display: none;
+  @include breakpoint(sm) {
+    display: block;
+  }
+}
+
 .is-bold {
   font-weight: bold;
 }
