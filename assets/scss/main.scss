@@ -187,8 +187,12 @@ button, h1, .title, .subtitle, .item-info {
   padding: 3rem 1.5em;
 
   &.top {
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: 0;
+
+    @include breakpoint(sm) {
+      padding-top: 4rem;
+    }
   }
 
   .container {
