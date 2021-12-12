@@ -7,11 +7,12 @@
       <div class="info">
         <p>{{ item.originalName | noExtension }}</p>
       </div>
-      <div class="wf" v-if="project.settings.showWaveForms">
+      <div class="wf" >
         <PlayerWaveForm
+        v-if="project.settings.showWaveForms"
           :mediaItemKey="item.stems[0].key"
           :isFooter="true"
-          :bars="100"
+          :bars="200"
         />
       </div>
       <div class="time-info">
