@@ -11,7 +11,7 @@
         <PlayerWaveForm
         v-if="project.settings.showWaveForms"
           :mediaItemKey="item.stems[0].key"
-          :isFooter="true"
+          
           :bars="200"
         />
       </div>
@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/mixins.scss";
 .item-wrapper {
   display: inline-block;
