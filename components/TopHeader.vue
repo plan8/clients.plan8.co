@@ -9,9 +9,7 @@
         <div>
           <p class="is-size-3 title is-bold">{{ project.name }}</p>
           <p class="subtitle">
-            Created by {{ project.uid.name }}
-            <br />
-            {{ infoText }}
+            Created by {{ project.uid.name }} · {{ infoText }}
           </p>
           <div class="actions is-hidden-mobile">
             <button class="btn rounded"  @click="download()">
@@ -65,7 +63,7 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section top">
       <div class="container">
          <div class="project-settings" v-if="isButtonView">
             <Toggle :label="'Solo Trig'" v-model="soloMode" />
