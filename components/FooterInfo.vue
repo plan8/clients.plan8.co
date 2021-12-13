@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section footer">
     <div class="container">
       <div class="info-footer">
         {{ footerText }}

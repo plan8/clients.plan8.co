@@ -1,17 +1,14 @@
 <template>
-  <div >
+  <div>
     <TopHeader />
     <section class="section">
       <div class="container">
-        <div v-for="sp in project.subProjects" :key="sp.id">
+        <div v-for="sp in project.subProjects" class="subproject" :key="sp.id">
           <p class="title is-size-4">{{ sp.name }}</p>
           <Description :description="sp.description" />
-          <div class="list-container">
-            <StandardItem
-              v-for="item in sp.items"
-              :key="item.id"
-              :item="item"
-            />
+          <div v-for="(item, index) in sp.items" :key="item.id" class="standard-item-outer">
+            <p v-if="project.settings.showIndex">{{ index + 1 }}</p>
+            <StandardItem :item="item" />
           </div>
         </div>
       </div>
@@ -39,10 +36,11 @@ export default {
   },
   computed: {
     ...mapState(["isLoading", "project"]),
+    showIndex(){
+      return true
+    }
   },
   mounted() {
-    
-
     this.$store.commit("player/SET_SHOWFOOTER", true);
     this.$store.commit("SET_ISLOADING", false);
   },
@@ -50,7 +48,6 @@ export default {
   async asyncData({ route, store, app }) {
     try {
       const { id } = route.params;
-      
 
       const apiRoot =
         process.env.NODE_ENV == "production"
@@ -66,13 +63,10 @@ export default {
       }
       const projectPath = `${apiRoot}/projects/${projectId}/public`;
       const project = await $fetch(projectPath);
-      
 
       // const project = store.dispatch('getPublicProject', {
       //   projectId: id
       // })
-
-  
 
       store.commit("SET_PROJECT", project);
 
@@ -80,8 +74,6 @@ export default {
       //   project,
       // };
     } catch (error) {
-      
-
       return {
         // project: {
         //   name: 'Not Found'
@@ -91,3 +83,26 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.standard-item-outer {
+     display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1.2rem;
+    
+    border-radius: 30px;
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+    &:hover {
+      background: var(--bgColorAlternative);
+    }
+
+  p {
+    margin-right: 1.5rem;
+    
+  }
+
+}
+</style>

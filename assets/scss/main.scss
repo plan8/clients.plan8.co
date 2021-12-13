@@ -5,6 +5,7 @@
 
 :root {
   --bgColor: #fff;
+  --bgColorAlternative: rgb(241, 241, 241);
   --textColor: #333;
   --primaryColor: #000000;
   --primaryColorDarker: #606060;
@@ -63,6 +64,7 @@ body {
     --primaryContrast: #fff;
     --fontFamily: DIN, sans-serif;
     --bgHeader: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(122,86,198,1) 100%);
+    --bgColorAlternative: #1B132A;
     color-scheme: dark;
   }
 
@@ -183,12 +185,27 @@ button, h1, .title, .subtitle, .item-info {
   font-size: 1rem;
 }
 
+
+.subproject {
+
+  margin-bottom: 3rem;
+}
+
 .section {
   padding: 3rem 1.5em;
 
   &.top {
     padding-top: 2rem;
     padding-bottom: 0;
+
+    @include breakpoint(sm) {
+      padding-top: 4rem;
+    }
+  }
+
+  &.footer {
+    padding-top: 0;
+    padding-bottom: 2rem;
 
     @include breakpoint(sm) {
       padding-top: 4rem;

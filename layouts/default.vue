@@ -55,6 +55,6 @@ export default {
 
 <style lang="scss">
 .page {
-  margin-bottom: 5rem;
+  // margin-bottom: 5rem;
 }
 </style>

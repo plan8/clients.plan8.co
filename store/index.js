@@ -7,6 +7,7 @@ const defaultProject = {
     tags: [],
     settings: {
         showWaveForms: true,
+        showIndex: true,
         permissions: 0,
         allowPublic: false,
         toneOptions: {
@@ -160,8 +161,13 @@ export const mutations = {
     },
 
     SET_SHOWWAVEFORMS(state, payload) {
-        console.log('payload: ', payload);
+
         state.project.settings.showWaveForms = payload
+    },
+
+    SET_SHOWINDEX(state, payload) {
+    
+        state.project.settings.showIndex = payload
     },
 
     

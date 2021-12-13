@@ -320,7 +320,7 @@ export default {
         }
 
         @include breakpoint(md) {
-          max-width: 150px;
+          max-width: 2000px;
         }
       }
     }

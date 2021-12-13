@@ -8,16 +8,14 @@
 
         <div>
           <p class="is-size-3 title is-bold">{{ project.name }}</p>
-          <p class="subtitle">
+          <p class="subtitle mini">
             Created by {{ project.uid.name }} · {{ infoText }}
           </p>
           <div class="actions is-hidden-mobile">
-            <button class="btn rounded"  @click="download()">
+            <button class="btn rounded" @click="download()">
               Zip and download
             </button>
           </div>
-         
-
         </div>
 
         <div class="logo">
@@ -65,14 +63,19 @@
     </section>
     <section class="section top">
       <div class="container">
-         <div class="project-settings" v-if="isButtonView">
+        <div class="project-settings">
+          <div class="" v-if="isButtonView">
             <Toggle :label="'Solo Trig'" v-model="soloMode" />
           </div>
 
-          <div class="project-settings is-hidden-mobile" v-if="!isButtonView">
+          <div class="is-hidden-mobile" v-if="!isButtonView">
             <Toggle :label="'Waveforms'" v-model="showWaveForms" />
           </div>
 
+          <div class="" v-if="!isButtonView">
+            <Toggle :label="'Show Index'" v-model="showIndex" />
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -115,6 +118,15 @@ export default {
         this.$store.commit("SET_SHOWWAVEFORMS", value);
       },
     },
+    showIndex: {
+      get() {
+        return this.project.settings.showIndex;
+      },
+      set(value) {
+        this.$store.commit("SET_SHOWINDEX", value);
+      },
+    },
+
     isButtonView() {
       return this.$route.name == "buttons-id";
     },
@@ -157,29 +169,38 @@ export default {
   background: var(--bgHeader);
 }
 
+.project-settings {
+    display: flex;
+
+    div {
+      margin-right: 1rem;
+    }
+   
+    margin-top: 2rem;
+
+    @include breakpoint(sm) {
+      margin-top: 2rem;
+    }
+  }
+
 .top-header {
   display: flex;
   position: relative;
   flex-direction: column;
   // justify-content: space-between;
 
-    @include breakpoint(sm) {
+  @include breakpoint(sm) {
     flex-direction: row;
   }
 
- 
-
-  .project-settings {
-    margin-top: 2rem;
-
-    @include breakpoint(sm) {
-      margin-top: 4rem;
-    }
+  .mini {
+    font-size: 0.9rem;
   }
+
+  
 
   .actions {
     margin-top: 2rem;
-  
 
     #download {
       display: none;
@@ -233,15 +254,15 @@ export default {
 
   .logo {
     position: absolute;
-    right:0;
-    top:0;
+    right: 0;
+    top: 0;
     height: 30px;
     margin-top: 0.5rem;
     margin-left: auto;
 
     @include breakpoint(sm) {
-      height: 50px;
-
+      height: 80px;
+      padding-top: 1.2rem;
     }
 
     svg {

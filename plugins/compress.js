@@ -25,7 +25,7 @@ export default function (ctx, inject, store) {
               const prom = this.downloadUrlAsPromise(fileUrl)
               //items.push(item)
               jszip.file(
-                `${project.name}/${fileName}`, //in my case, this produces something like 'my image.jpg'
+                `${project.name}/${fileName}.mp3`, //in my case, this produces something like 'my image.jpg'
                 prom
                 //this.downloadUrlAsPromise(fileUrl) //generates the file we need to download
       

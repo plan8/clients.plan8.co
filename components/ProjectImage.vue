@@ -42,12 +42,14 @@ export default {
   justify-content: center;
   margin-bottom: 2rem;
   margin-top: 4rem;
+  
 
   @include breakpoint(sm) {
     justify-content: flex-start;
     margin-top: 0;
     margin-right: 2rem;
       margin-bottom: 0;
+      padding-top: 1.2rem;
   }
 
   .project-image {

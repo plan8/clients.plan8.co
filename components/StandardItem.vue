@@ -1,6 +1,7 @@
 <template>
   <div class="item-wrapper">
     <div class="standard-item">
+     
       <div class="controls">
         <PlayButton :itemdata="item" />
       </div>
@@ -56,6 +57,7 @@ export default {
       playerItem: (state) => state.player.item,
        project: (state) => state.project,
     }),
+
     isActiveItem() {
       return this.playerItem.id == this.item.id;
     },
@@ -90,7 +92,7 @@ export default {
 @import "@/assets/scss/mixins.scss";
 .item-wrapper {
   display: inline-block;
-  margin-bottom: 1rem;
+
   width: 100%;
   //   transition: all 1.4s ease-in-out;
 
@@ -165,7 +167,7 @@ export default {
       display: none;
 
       @include breakpoint(sm) {
-        display: inline-block;
+            display: flex;
       }
 
       svg {
@@ -180,7 +182,7 @@ export default {
             }
 
             path {
-              stroke: var(--primaryColor);
+              // stroke: var(--primaryColor);
               fill: var(--primaryColor);
               transition: all .4s ease;
             }
@@ -193,7 +195,7 @@ export default {
         }
 
         path {
-          stroke: var(--primaryColorDarker);
+          // stroke: var(--primaryColorDarker);
           fill: var(--primaryColorDarker);
         }
       }
