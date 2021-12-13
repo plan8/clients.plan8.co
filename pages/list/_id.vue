@@ -3,11 +3,11 @@
     <TopHeader />
     <section class="section">
       <div class="container">
-        <div v-for="sp in project.subProjects" class="subproject" :key="sp.id">
+        <div v-for="(sp, indexOne) in project.subProjects" class="subproject" :key="sp.id">
           <p class="title is-size-4">{{ sp.name }}</p>
           <Description :description="sp.description" />
           <div v-for="(item, index) in sp.items" :key="item.id" class="standard-item-outer">
-            <p v-if="project.settings.showIndex">{{ index + 1 }}</p>
+            <p v-if="project.settings.showIndex">{{indexArray[indexOne][index]}}</p>
             <StandardItem :item="item" />
           </div>
         </div>
@@ -36,8 +36,23 @@ export default {
   },
   computed: {
     ...mapState(["isLoading", "project"]),
-    showIndex(){
-      return true
+    indexArray(){
+      let soundCount = 0;
+      let arr = []
+
+      this.project.subProjects.forEach((sp, index) => {
+         let sub = []
+         arr.push(sub)
+
+        sp.items.forEach((item) => {
+          soundCount++;
+          arr[index].push(soundCount)
+        });
+
+      })
+      
+      console.log('arr: ', arr);
+      return arr
     }
   },
   mounted() {
@@ -101,6 +116,7 @@ export default {
 
   p {
     margin-right: 1.5rem;
+    min-width: 18px;
     
   }
 
