@@ -90,8 +90,5 @@ export default {
 </script>
 
 <style lang="scss">
-.subproject {
 
-  margin-bottom: 3rem;
-}
 </style>
