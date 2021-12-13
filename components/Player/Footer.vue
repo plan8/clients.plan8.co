@@ -12,6 +12,7 @@
               :mediaItemKey="currentStem.key"
               :isFooter="true"
               :bars="100"
+              :item="item"
 
 
             />

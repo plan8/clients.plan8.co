@@ -73,7 +73,7 @@
           </div>
 
           <div class="" v-if="!isButtonView">
-            <Toggle :label="'Show Index'" v-model="showIndex" />
+            <Toggle :label="'List index'" v-model="showIndex" />
           </div>
         </div>
       </div>

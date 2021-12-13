@@ -34,6 +34,7 @@ export default function (context, inject, store) {
                     });
                     
                     context.store.commit("player/SET_ITEMSCUE", items);
+                    console.log('items: ', items);
 
                     switch (e.keyCode) {
                         case 32:
@@ -46,9 +47,11 @@ export default function (context, inject, store) {
                             $nuxt.$emit("audio-ff");
                             break;
                         case 38:
+                            context.store.commit('player/SET_TARGETPOSITION', null)
                             context.store.commit("player/SET_PREVIOUS");
                             break;
                         case 40:
+                            context.store.commit('player/SET_TARGETPOSITION', null)
                             context.store.commit("player/SET_NEXT");
                             break;
                         default:

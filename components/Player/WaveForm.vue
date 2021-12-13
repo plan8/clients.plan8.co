@@ -92,6 +92,10 @@ export default {
       default: false,
       required: false,
     },
+    item: {
+      type: Object,
+      required: true
+    },
     mediaItemKey: {
       type: String,
     },
@@ -163,7 +167,7 @@ export default {
       this.mouseLeave();
     },
     mouseEnter() {
-      if (!this.isActiveItem) return;
+      //if (!this.isActiveItem) return;
       this.$refs.navigate.style.opacity = 0.6;
     },
 
@@ -173,7 +177,7 @@ export default {
     },
 
     handleMove(e) {
-      if (!this.isActiveItem) return;
+      //if (!this.isActiveItem) return;
       this.mouseEnter();
 
       let rect = this.$refs.wfbg.getBoundingClientRect();
@@ -207,7 +211,8 @@ export default {
       }
     },
     seek(pos) {
-      if (this.isActiveItem) this.$nuxt.$emit("audio-seek", pos);
+     // if (this.isActiveItem) this.$nuxt.$emit("audio-seek", pos);
+     this.$nuxt.$emit("audio-seek", {position: pos, item: this.item});
     },
 
     drawWaveform() {

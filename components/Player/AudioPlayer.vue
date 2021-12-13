@@ -6,8 +6,6 @@
 import { mapState } from "vuex";
 // import { Player, JCReverb } from "tone";
 
-
-
 export default {
   components: {},
   data() {
@@ -22,10 +20,10 @@ export default {
       item: (state) => state.player.item,
       useTone: (state) => state.player.useTone,
       currentStem: (state) => state.player.currentStem,
+      targetPosition: (state) => state.player.targetPosition,
       playbackStates: (state) => state.player.playbackStates,
     }),
     currentSource() {
-
       return `${this.$config.previewURL}${this.currentStem.key}.mp3`;
     },
   },
@@ -42,30 +40,46 @@ export default {
     this.simplePlayer.preload = true;
     //this.simplePlayer.autoplay = true;2
 
-    
-
     this.addListeners();
   },
   watch: {
     // currentSource(e) {
-    //   
-      
+    //
+
     //   this.simplePlayer.src = e
     // },
     item(e) {
-      
       if (this.useTone) {
         // this.$store.commit("player/SET_PLAYBACKSTATE", "loading");
         this.player.load(this.currentSource).then((r) => {
-          this.$store.commit("player/SET_PLAYBACKSTATE",  this.playbackStates.PAUSED);
+          this.$store.commit(
+            "player/SET_PLAYBACKSTATE",
+            this.playbackStates.PAUSED
+          );
         });
       } else {
         // this.simplePlayer.pause();
         this.isPlaying = false;
-        this.stop()
+        this.stop();
         this.simplePlayer.src = this.currentSource;
 
-        this.toggle()
+        this.simplePlayer.onloadedmetadata = () => {
+          if (this.targetPosition) {
+            let pos = this.simplePlayer.duration * this.targetPosition;
+            this.simplePlayer.currentTime = pos;
+            console.log("har targetposition", this.targetPosition);
+            this.toggle();
+
+          }
+            
+          };
+
+        if (this.targetPosition) {
+          
+        } else {
+          this.toggle();
+        }
+
         // this.$analyticsHandler.track("Play Item", {
         //   itemId: this.item.id,
         //   itemName: this.item.originalName,
@@ -74,7 +88,6 @@ export default {
     },
     useTone(val) {
       if (val) {
-        
         const reverb = new JCReverb({ wet: this.reverbValue }).toDestination();
 
         this.reverb = reverb;
@@ -104,12 +117,13 @@ export default {
 
       this.simplePlayer.addEventListener("play", () => {
         this.isPlaying = true;
-        this.$store.commit("player/SET_PLAYBACKSTATE", this.playbackStates.PLAYING);
+        this.$store.commit(
+          "player/SET_PLAYBACKSTATE",
+          this.playbackStates.PLAYING
+        );
       });
 
-      this.simplePlayer.addEventListener("canplay", () => {
-
-      });
+      this.simplePlayer.addEventListener("canplay", () => {});
 
       this.simplePlayer.addEventListener("progress", () => {
         this.$store.commit(
@@ -120,22 +134,42 @@ export default {
 
       this.simplePlayer.addEventListener("pause", () => {
         this.isPlaying = false;
-        this.$store.commit("player/SET_PLAYBACKSTATE", this.playbackStates.PAUSED);
+        this.$store.commit(
+          "player/SET_PLAYBACKSTATE",
+          this.playbackStates.PAUSED
+        );
       });
 
       this.simplePlayer.addEventListener("ended", () => {
-       
-        this.$store.commit("player/SET_PLAYBACKSTATE", this.playbackStates.PAUSED);
-      
+        this.$store.commit(
+          "player/SET_PLAYBACKSTATE",
+          this.playbackStates.PAUSED
+        );
       });
 
-      this.$nuxt.$on("audio-seek", (relative) => {
+      this.$nuxt.$on("audio-seek", ({ position, item }) => {
         if (this.simplePlayer) {
-          let pos = this.simplePlayer.duration * relative;
+          console.log("this.item: ", this.item);
 
-          this.simplePlayer.currentTime = pos;
-          this.play();
-          this.$store.commit("player/SET_PLAYBACKSTATE", this.playbackStates.PLAYING);
+          if (this.item.stems.length) {
+            if (item.stems[0].key !== this.item.stems[0].key) {
+              console.log("not the savme");
+
+              this.$store.commit("player/SET_TARGETPOSITION", position);
+              console.log("position: ", position);
+              this.$store.commit("player/SET_ITEM", item);
+            } else {
+              let pos = this.simplePlayer.duration * position;
+              this.simplePlayer.currentTime = pos;
+            }
+          } else {
+            this.$store.commit("player/SET_ITEM", item);
+          }
+
+          this.$store.commit(
+            "player/SET_PLAYBACKSTATE",
+            this.playbackStates.PLAYING
+          );
         }
         if (this.useTone) {
           let newTime = this.player.buffer.duration * relative;
@@ -194,8 +228,6 @@ export default {
       //
     },
     play() {
- 
-      
       if (!this.item.id) return;
       if (this.useTone) {
         if (this.player.loaded) {
@@ -204,11 +236,9 @@ export default {
         }
       } else {
         this.simplePlayer.play();
-        
       }
     },
     toggle() {
-      
       if (this.isPlaying) {
         this.stop();
       } else {
@@ -218,7 +248,6 @@ export default {
     stop() {
       if (this.player) this.player.stop();
       this.simplePlayer.pause();
-
     },
   },
 };

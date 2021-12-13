@@ -12,6 +12,7 @@
         <PlayerWaveForm
         v-if="project.settings.showWaveForms"
           :mediaItemKey="item.stems[0].key"
+          :item="item"
           
           :bars="200"
         />

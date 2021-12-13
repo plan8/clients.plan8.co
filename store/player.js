@@ -16,7 +16,8 @@ export const state = () => ({
         key: '0'
     },
     useTone: false,
-    showFooter: false
+    showFooter: false,
+    targetPosition: 0
 });
 
 export const mutations = {
@@ -29,14 +30,33 @@ export const mutations = {
     },
 
     SET_PREVIOUS(state, payload) {
-        let listItems = state.itemsCue;
-        let currentIndex = listItems.indexOf(state.item);
-        if (currentIndex <= 0) {
-            return;
+        let listItems = state.itemsCue
+        
+        let currentIndex;
+        if (listItems.indexOf(state.item) !== -1) {
+            currentIndex = listItems.indexOf(state.item) - 1
         } else {
-            state.item = listItems[currentIndex - 1];
-            state.currentStem.currentStem = state.item.stems[0]
+            currentIndex = 0
         }
+        console.log('currentIndex: ', currentIndex);
+         //if (currentIndex <= 0)  return;
+
+         if (currentIndex > -1) {
+            state.item = listItems[(currentIndex % listItems.length)];
+            state.currentStem = state.item.stems[0]
+         }
+           
+    
+        // let listItems = state.itemsCue;
+        // let currentIndex = listItems.indexOf(state.item);
+        // console.log('currentIndex: ', currentIndex);
+        // if (currentIndex <= 0) {
+        //     return;
+        // } else {
+        //     state.item = listItems[currentIndex - 1];
+        //     console.log('state.item: ', state.item);
+        //     state.currentStem.currentStem = state.item.stems[0]
+        // }
     },
 
     SET_NEXT(state, payload) {
@@ -69,6 +89,10 @@ export const mutations = {
 
     SET_CURRENTTIME(state, payload) {
         state.currentTume = payload;
+    },
+
+    SET_TARGETPOSITION(state, payload) {
+        state.targetPosition = payload;
     }
 };
 

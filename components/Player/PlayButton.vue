@@ -107,7 +107,9 @@ export default {
       if (this.isFooter) {
         this.$emit("play");
       } else {
+        this.$store.commit("player/SET_TARGETPOSITION", null);
         this.$store.commit("player/SET_ITEM", this.itemdata);
+        
       }
 
       switch (this.playbackState) {
