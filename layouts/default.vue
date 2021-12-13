@@ -1,9 +1,10 @@
 <template>
   <div v-show="!isLoading" class="">
-    <main>
-      <nuxt class="page" />
+    <main class="page">
+      <nuxt  />
+         <FooterInfo />
     </main>
-    <FooterInfo />
+ 
     <PlayerFooter :settings="{ isClient: true }" />
   </div>
 </template>
@@ -55,6 +56,6 @@ export default {
 
 <style lang="scss">
 .page {
-  // margin-bottom: 5rem;
+  padding-bottom: 4rem;
 }
 </style>
