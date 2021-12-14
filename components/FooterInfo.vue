@@ -38,5 +38,9 @@ export default {
 .info-footer {
   font-size: 0.8rem;
   color: var(--textColor);
+
+  @include breakpoint(sm) {
+    font-size: 1rem;
+  }
 }
 </style>

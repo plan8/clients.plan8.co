@@ -161,6 +161,10 @@ export default {
             } else {
               let pos = this.simplePlayer.duration * position;
               this.simplePlayer.currentTime = pos;
+
+              if (!this.isPlaying) {
+                this.play()
+              }
             }
           } else {
             this.$store.commit("player/SET_ITEM", item);

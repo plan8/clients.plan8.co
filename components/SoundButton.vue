@@ -314,13 +314,14 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         //padding-bottom: 1px;
+        max-width: 250px;
 
         @include breakpoint(sm) {
           max-width: 280px;
         }
 
         @include breakpoint(md) {
-          max-width: 2000px;
+          max-width: 200px;
         }
       }
     }

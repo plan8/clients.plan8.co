@@ -1,6 +1,9 @@
 <template>
   <div class="wf-wrapper" :class="{ 'is-revision': isRevision }">
     <div class="waveform" v-show="dataLoaded">
+       <!-- <div ref="currenttime" class="current-time">
+        <p>time</p>
+      </div> -->
       <svg
         viewBox="0 0 100 100"
         class="waveform-container"
@@ -10,6 +13,7 @@
         @mouseenter="mouseEnter"
         @mouseleave="mouseLeave"
       >
+     
         <rect
           class="waveform-bg"
           ref="wfbg"
@@ -156,6 +160,8 @@ export default {
       if (this.isActiveItem) {
         if (!isNaN(progressValue) && this.$refs.progress) {
           this.$refs.progress.setAttribute("width", progressValue);
+         // this.$refs.currenttime.style.left =  progressValue+ '%'
+          
         }
       }
     },
@@ -323,5 +329,10 @@ $secondary: var(--secondaryColor);
   // clip-path: url('#testClip');
   pointer-events: none;
   fill: var(--primaryColor);
+}
+
+.current-time {
+  position: absolute;
+    left: 0%;
 }
 </style>

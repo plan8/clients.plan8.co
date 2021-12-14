@@ -6,14 +6,15 @@
 :root {
   --bgColor: #fff;
   --bgColorAlternative: rgb(241, 241, 241);
-  --textColor: #333;
+  --textColor: rgb(0, 0, 0);
   --primaryColor: #000000;
-  --primaryColorDarker: #606060;
+  --primaryColorDarker: #DADADA;
   --primaryContrast: #fff;
   --fontFamily: DIN, sans-serif;
   --borderSize: 3px;
   --borderRadius: 5px;
   --bgHeader: transparent;
+  --bgColorAlternative: #F6F6F6;
 }
 
 body {

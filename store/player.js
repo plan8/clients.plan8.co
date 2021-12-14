@@ -84,6 +84,7 @@ export const mutations = {
     },
 
     SET_ITEMSCUE(state, payload) {
+      
         state.itemsCue = payload;
     },
 

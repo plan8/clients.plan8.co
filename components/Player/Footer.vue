@@ -1,11 +1,63 @@
 <template>
-  <div class="footer-main" :class="{ 'active': isActive }">
+  <div class="footer-main" :class="{ active: isActive }">
     <section class="section">
       <div class="container no-padding">
         <PlayerAudioPlayer />
         <div class="footer-inner">
           <div class="controls">
+            <svg
+              @click="handleNav()"
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="skip prev"
+            >
+              <path
+                d="M22.75 11.701C23.75 12.2783 23.75 13.7217 22.75 14.299L9.25 22.0933C8.25 22.6706 7 21.9489 7 20.7942L7 5.20577C7 4.05107 8.25 3.32938 9.25 3.90673L22.75 11.701Z"
+                fill="black"
+                stroke="black"
+              />
+              <line
+                x1="24.5"
+                y1="4.5"
+                x2="24.5"
+                y2="21.5"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
+
             <PlayerPlayButton :itemdata="item" :isFooter="true" />
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="skip next"
+              @click="handleNav(true)"
+            >
+              <path
+                d="M22.75 11.701C23.75 12.2783 23.75 13.7217 22.75 14.299L9.25 22.0933C8.25 22.6706 7 21.9489 7 20.7942L7 5.20577C7 4.05107 8.25 3.32938 9.25 3.90673L22.75 11.701Z"
+                fill="black"
+                stroke="black"
+              />
+              <line
+                x1="24.5"
+                y1="4.5"
+                x2="24.5"
+                y2="21.5"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="track-name">
+            <p>{{ item.originalName | noExtension }}</p>
           </div>
           <div class="wf">
             <PlayerWaveForm
@@ -13,17 +65,10 @@
               :isFooter="true"
               :bars="100"
               :item="item"
-
-
             />
           </div>
-          
-        
-          <div class="footer-info client">
-            {{ item.originalName }}
-          </div>
 
-         
+          <TimeInfo :item="item" />
         </div>
       </div>
     </section>
@@ -51,11 +96,11 @@ export default {
       currentStem: (state) => state.player.currentStem,
       // useTone: (state) => state.player.useTone,
       previewapiURL: (state) => state.previewapiURL,
-      showFooter: (state) => state.player.showFooter
+      showFooter: (state) => state.player.showFooter,
+      project: (state) => state.project,
     }),
-    isActive(){
-      
-      return this.showFooter && this.item.id
+    isActive() {
+      return this.showFooter && this.item.id;
     },
     // useTone: {
     //   get() {
@@ -66,7 +111,6 @@ export default {
     //     this.$store.commit("player/SET_USETONE", val);
     //   },
     // },
-    
   },
   props: {
     settings: {
@@ -82,6 +126,23 @@ export default {
       //this.reverb.wet.value = this.reverbValue
       this.player.playbackRate = this.reverbValue;
       //
+    },
+    handleNav(next) {
+      const items = [];
+      this.project.subProjects.forEach((sp) => {
+        sp.items.forEach((item) => {
+          items.push(item);
+        });
+      });
+
+       this.$store.commit("player/SET_ITEMSCUE", items);
+      if (next) {
+        this.$store.commit("player/SET_TARGETPOSITION", null);
+        this.$store.commit("player/SET_NEXT");
+      } else {
+        this.$store.commit("player/SET_TARGETPOSITION", null);
+        this.$store.commit("player/SET_PREVIOUS");
+      }
     },
   },
 };
@@ -107,6 +168,15 @@ export default {
   z-index: 4;
   transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
 
+  .skip {
+    margin: 0 1rem;
+    cursor: pointer;
+
+    &.prev {
+      transform: rotate(180deg);
+    }
+  }
+
   .section {
     width: 100%;
     // padding: 0 0.6rem;
@@ -121,16 +191,18 @@ export default {
     align-items: center;
     justify-content: space-between;
 
+    .track-name {
+      padding: 0 2rem;
+    }
+
     .footer-info {
       // width: 100%;
       color: var(--textColor);
       margin-left: auto;
-    max-width: 104px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-   
+      max-width: 104px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       @include breakpoint(sm) {
         margin-left: auto;
@@ -147,7 +219,7 @@ export default {
       flex: 0 0 40px;
       display: flex;
       align-items: center;
-      margin-right: var(--gap);
+      margin-left: -1.5rem;
     }
   }
 }

@@ -147,7 +147,7 @@ $size: 44px;
   // margin-right: var(--gap);
   cursor: pointer;
   display: flex;
-  margin-right: .5rem;
+  
 
 
   // flex-basis: $size;
