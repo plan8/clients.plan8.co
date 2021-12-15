@@ -1,6 +1,6 @@
 <template>
   <div class="time-info">
-    <p>{{ currentTime | toTime }} / {{ item.duration | toTime }}</p>
+    <p><span v-if="showCurrentTime">{{ currentTime | toTime }}</span> <span v-if="showDuration">{{ item.duration | toTime }}</span></p>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { mapState } from "vuex";
 
 export default {
-    props: ["item"],
+    props: ["item", "showDuration", "showCurrentTime"],
    data() {
     return {
       currentTime: 0,

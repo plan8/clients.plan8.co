@@ -20,7 +20,7 @@
       <!-- <div class="time-info">
         <p>{{ currentTime | toTime }} / {{ item.duration | toTime }}</p>
       </div> -->
-      <TimeInfo :item="item" />
+      <TimeInfo :item="item" :showDuration="true" />
       <div class="actions">
         <svg
           class="icon-button"

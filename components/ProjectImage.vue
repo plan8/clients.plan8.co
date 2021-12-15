@@ -62,7 +62,7 @@ export default {
     height: 112px;
     width: 112px;
     aspect-ratio: 1 / 1;
-    background: url() no-repeat center center;
+    background: url('/app-icon.png') no-repeat center center;
 
     background-size: cover;
     filter: drop-shadow(20px 20px 36px rgba(0, 0, 0, 0.18));

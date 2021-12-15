@@ -1,9 +1,12 @@
 <template>
   <div class="wf-wrapper" :class="{ 'is-revision': isRevision }">
     <div class="waveform" v-show="dataLoaded">
-       <!-- <div ref="currenttime" class="current-time">
-        <p>time</p>
-      </div> -->
+      <div ref="currenttime" class="current-time">
+        <p>{{ currentTime | toTime }}</p>
+      </div>
+      <div class="cursor-time" ref="cursortime" >
+        <p>{{ cursorTime | toTime }}</p>
+      </div>
       <svg
         viewBox="0 0 100 100"
         class="waveform-container"
@@ -13,7 +16,6 @@
         @mouseenter="mouseEnter"
         @mouseleave="mouseLeave"
       >
-     
         <rect
           class="waveform-bg"
           ref="wfbg"
@@ -67,8 +69,7 @@ import { mapState } from "vuex";
 
 const normalizeData = (filteredData) => {
   const multiplier = Math.pow(Math.max(...filteredData), -1);
-  
-  
+
   return filteredData.map((n) => n * multiplier);
 };
 
@@ -98,7 +99,7 @@ export default {
     },
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     mediaItemKey: {
       type: String,
@@ -108,6 +109,8 @@ export default {
     return {
       jsonData: null,
       dataLoaded: false,
+      cursorTime: 0,
+      currentTime: 0,
     };
   },
   computed: {
@@ -155,17 +158,20 @@ export default {
         // }
       });
     },
+
     updateWaveForm(progressObj) {
       let progressValue = progressObj.progress;
+
       if (this.isActiveItem) {
+        this.currentTime = progressObj.currentTime;
         if (!isNaN(progressValue) && this.$refs.progress) {
           this.$refs.progress.setAttribute("width", progressValue);
-         // this.$refs.currenttime.style.left =  progressValue+ '%'
-          
+          this.$refs.currenttime.style.left = progressValue + "%";
         }
       }
     },
     handleClick(e) {
+      
       let rect = this.$refs.wfbg.getBoundingClientRect();
       var relative = (e.clientX - rect.left) / rect.width;
 
@@ -174,12 +180,14 @@ export default {
     },
     mouseEnter() {
       //if (!this.isActiveItem) return;
-      this.$refs.navigate.style.opacity = 0.6;
+      //this.$refs.navigate.style.opacity = 0.6;
+      this.$refs.cursortime.style.display = "block";
     },
 
     mouseLeave() {
       this.isSeeking = false;
       this.$refs.navigate.style.opacity = 0;
+      this.$refs.cursortime.style.display = "none";
     },
 
     handleMove(e) {
@@ -189,7 +197,10 @@ export default {
       let rect = this.$refs.wfbg.getBoundingClientRect();
       var relative = Math.max(0, (e.clientX - rect.left) / rect.width);
 
-      this.$refs.navigate.setAttribute("width", relative * 100);
+      // this.$refs.navigate.setAttribute("width", relative * 100);
+      // 
+      this.cursorTime = this.item.duration * relative;
+      this.$refs.cursortime.style.left = relative * 100 + "%";
     },
     setupWaveform() {
       //
@@ -201,7 +212,6 @@ export default {
         this.addListeners();
       }
 
-        
       if (this.mediaItemKey && this.mediaItemKey != 0) {
         fetch(this.jsonUrl)
           .then((response) => {
@@ -217,46 +227,43 @@ export default {
       }
     },
     seek(pos) {
-     // if (this.isActiveItem) this.$nuxt.$emit("audio-seek", pos);
-     this.$nuxt.$emit("audio-seek", {position: pos, item: this.item});
+      // if (this.isActiveItem) this.$nuxt.$emit("audio-seek", pos);
+      this.$nuxt.$emit("audio-seek", { position: pos, item: this.item });
     },
 
     drawWaveform() {
       this.dataLoaded = true;
       let decodedAudioData = normalizeData(this.jsonData);
-       const NUMBER_OF_BUCKETS = decodedAudioData.length < this.bars ? decodedAudioData.length : this.bars;  // number of "bars" the waveform should have
+      const NUMBER_OF_BUCKETS =
+        decodedAudioData.length < this.bars
+          ? decodedAudioData.length
+          : this.bars; // number of "bars" the waveform should have
       const SPACE_BETWEEN_BARS = 0.1; // from 0 (no gaps between bars) to 1 (only gaps - bars won't be visible)
-      
 
       let bucketDataSize = Math.floor(
         decodedAudioData.length / NUMBER_OF_BUCKETS
       );
-        
-        
+
       let buckets = [];
 
       for (var i = 0; i < NUMBER_OF_BUCKETS; i++) {
         let startingPoint = i * bucketDataSize;
         let endingPoint = i * bucketDataSize + bucketDataSize;
-        
+
         let max = 0;
 
         for (var j = startingPoint; j < endingPoint; j++) {
-          
           if (decodedAudioData[j] > max) {
             max = decodedAudioData[j];
           }
         }
         let size = Math.abs(max);
-        
-        
+
         buckets.push(size);
       }
-  
 
       let clipMask = buckets
         .map((bucket, i) => {
-          
           let bucketSVGWidth = 100.0 / buckets.length;
           let bucketSVGHeight = bucket * 100;
           let division = 2;
@@ -306,6 +313,40 @@ $secondary: var(--secondaryColor);
   width: 100%;
   height: 100%;
 
+  &:hover {
+    //  .cursor-time {
+    //   display: block;
+    //  }
+  }
+
+  .current-time {
+    pointer-events: none;
+    position: absolute;
+    left: 0%;
+    font-size: 0.8rem;
+    height: 100%;
+
+    p {
+      position: absolute;
+      bottom: -0.5rem;
+      margin-left: .5rem;
+    }
+  }
+
+  .cursor-time {
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    left: 0%;
+    border-left: 1px solid var(--primaryColor);
+    height: 100%;
+    font-size: 0.8rem;
+
+    p {
+      margin-left: .5rem;
+    }
+  }
+
   .waveform-container {
     width: 100%;
     height: 100%;
@@ -329,10 +370,5 @@ $secondary: var(--secondaryColor);
   // clip-path: url('#testClip');
   pointer-events: none;
   fill: var(--primaryColor);
-}
-
-.current-time {
-  position: absolute;
-    left: 0%;
 }
 </style>
